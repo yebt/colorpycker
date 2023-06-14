@@ -18,9 +18,6 @@ class WindowsPciker():
     external_px = 5
     external_py = 5
 
-    admn_width = 512
-    admn_height = 487
-
     # instance variables of views
     pciekr = None  # float windows to pick color
     config = None  # float windows to config
@@ -41,33 +38,7 @@ class WindowsPciker():
     def __init__(self):
         pass
 
-    # open admin thread
-    def open_admin_tht(self):
-        thr = threading.Thread(target=self.open_admin)
-        thr.start()
-
-    # open admin
-    def open_admin(self):
-        self.admin = tk.Tk()
-        # self.admin.attributes('-topmost', True)
-        # self.admin.overrideredirect(True)
-        self.admin.geometry(f'{self.admn_width}x{self.admn_height}')
-
-        self.admin.protocol("WM_DELETE_WINDOW", self.close_admin)
-
-        self.admin.mainloop()
-
-    # close admin
-    def close_admin(self):
-        if self.admin is not None:
-            self.admin.destroy()
-
-    # start picker thread
-    def open_picker_thr(self):
-        thrp = threading.Thread(target=self.open_picker)
-        thrp.start()
-
-    # start pciker
+    # start picker
     def open_picker(self):
         self.pciekr = tk.Tk()
         self.pciekr.attributes('-topmost', True)
@@ -174,5 +145,4 @@ class WindowsPciker():
 
 
 wp = WindowsPciker()
-wp.open_admin_tht()
-wp.open_picker_thr()
+wp.open_picker()
